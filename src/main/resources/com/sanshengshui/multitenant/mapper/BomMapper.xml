@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sanshengshui.multitenant.mapper.BomMapper">
+
+	<select id="get" resultType="com.sanshengshui.multitenant.pojo.BomDO">
+		select `cate_id`,`parent_id`,`cate_code`,`name`,`unit`,`used_count`,`specify`,`property`,`status`,`description` from t_bom where cate_id = #{value}
+	</select>
+	
+	<select id="list" resultType="com.sanshengshui.multitenant.pojo.BomDO">
+		select `cate_id`,`parent_id`,`cate_code`,`name`,`unit`,`used_count`,`specify`,`property`,`status`,`description` from t_bom
+        <where>  
+		  		  <if test="cateId != null and cateId != ''"> and cate_id = #{cateId} </if>
+		  		  <if test="parentId != null and parentId != ''"> and parent_id = #{parentId} </if>
+		  		  <if test="cateCode != null and cateCode != ''"> and cate_code = #{cateCode} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="unit != null and unit != ''"> and unit = #{unit} </if>
+		  		  <if test="usedCount != null and usedCount != ''"> and used_count = #{usedCount} </if>
+		  		  <if test="specify != null and specify != ''"> and specify = #{specify} </if>
+		  		  <if test="property != null and property != ''"> and property = #{property} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="description != null and description != ''"> and description = #{description} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by cate_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	<!-- 为了保证mycat分库的操作会进行，同一查询会重新执行而不是在sqlSession中查找，需要加上flushCache="true"-->
+ 	<select id="count" flushCache="true" resultType="int">
+		select count(*) from t_bom
+		 <where>  
+		  		  <if test="cateId != null and cateId != ''"> and cate_id = #{cateId} </if>
+		  		  <if test="parentId != null and parentId != ''"> and parent_id = #{parentId} </if>
+		  		  <if test="cateCode != null and cateCode != ''"> and cate_code = #{cateCode} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="unit != null and unit != ''"> and unit = #{unit} </if>
+		  		  <if test="usedCount != null and usedCount != ''"> and used_count = #{usedCount} </if>
+		  		  <if test="specify != null and specify != ''"> and specify = #{specify} </if>
+		  		  <if test="property != null and property != ''"> and property = #{property} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="description != null and description != ''"> and description = #{description} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.sanshengshui.multitenant.pojo.BomDO" useGeneratedKeys="true" keyProperty="cateId">
+		insert into t_bom
+		(
+			`parent_id`, 
+			`cate_code`, 
+			`name`, 
+			`unit`, 
+			`used_count`, 
+			`specify`, 
+			`property`, 
+			`status`, 
+			`description`
+		)
+		values
+		(
+			#{parentId}, 
+			#{cateCode}, 
+			#{name}, 
+			#{unit}, 
+			#{usedCount}, 
+			#{specify}, 
+			#{property}, 
+			#{status}, 
+			#{description}
+		)
+	</insert>
+
+</mapper>
