@@ -11,7 +11,7 @@ copyright: true
 
 
 
-![SaaS_banner](Multi-Tenant/SaaS_banner.jpg)
+![SaaS_banner](https://github.com/sanshengshui/multiTenant/blob/master/doc/SaaS_banner.jpg)
 
 
 
@@ -31,7 +31,7 @@ copyright: true
 
 这样的好处是，用户可以按自己的需求来购买功能和时间，同时自己不需要维护服务器，而我们作为SaaS提供商也免去了跑到客户现场实施的麻烦，运维的风险则主要由IaaS提供商来承担。
 
-![SaaS](Multi-Tenant/SaaS.jpg)
+![SaaS](https://github.com/sanshengshui/multiTenant/blob/master/doc/SaaS.jpg)
 
 
 
@@ -94,7 +94,7 @@ copyright: true
 每个租户的同时访问系统的最终用户数量。需要支持的越多，越倾向于隔离。 
 是否想针对每一租户提供附加的服务，例如数据的备份和恢复等。这方面的需求越多， 越倾向于隔离
 
-![Multi-Tenant](Multi-Tenant/Multi-Tenant.jpg)
+![Multi-Tenant](https://github.com/sanshengshui/multiTenant/blob/master/doc/Multi-Tenant.jpg)
 
 
 
@@ -252,15 +252,15 @@ server.xml主要是设置登录用户名密码，登录端口之类的信息。
 
 这样数据库和Mycat就设置好了，我们可以测试一下，向两个库中插入一些数据：
 
-![db01](Multi-Tenant/db01.png)
+![db01](https://github.com/sanshengshui/multiTenant/blob/master/doc/db01.png)
 
 这是db01的数据,共40条.
 
-![db02](Multi-Tenant/db02.png)
+![db02](https://github.com/sanshengshui/multiTenant/blob/master/doc/db02.png)
 
 这是db02中的数据,共8条.
 
-![mycat](Multi-Tenant/mycat.png)
+![mycat](https://github.com/sanshengshui/multiTenant/blob/master/doc/mycat.png)
 
 这是mycat的逻辑库james中的数据，可以看到，包含了所有的db01和db02的数据。
 
@@ -276,7 +276,7 @@ mysql> select count(*) from bom;
 /*!mycat: datanode=dn2*/select count(*) from bom;
 ```
 
-![explain](Multi-Tenant/explain.png)
+![explain](https://github.com/sanshengshui/multiTenant/blob/master/doc/explain.png)
 
 可以看到，注解实实在在地把SQL语句路由到对应的数据库中去执行了，而不加注解的SQL则在整个逻辑库上执行。
 
@@ -775,20 +775,20 @@ public class TestController {
 
 结果如下：
 
-![dn1](Multi-Tenant/dn1.png)
+![dn1](https://github.com/sanshengshui/multiTenant/blob/master/doc/dn1.png)
 
 来看下打印的sql语句：
 
-![dn1-sql](Multi-Tenant/dn1-sql.png)
+![dn1-sql](https://github.com/sanshengshui/multiTenant/blob/master/doc/dn1-sql.png)
 
 可以看到，SQL注解已经成功添加进去了。
 
 在设置session为dn2
 
-![dn2](Multi-Tenant/dn2.png)
+![dn2](https://github.com/sanshengshui/multiTenant/blob/master/doc/dn2.png)
 
 结果如下。
 
 打印的sql语句：
 
-![dn2-sql](Multi-Tenant/dn2-sql.png)
+![dn2-sql](https://github.com/sanshengshui/multiTenant/blob/master/doc/dn2-sql.png)
