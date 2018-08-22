@@ -13,7 +13,6 @@
 ### IntelliJ IDEA ###
 .idea
 *.iws
-*.iml
 *.ipr
 .mvn
 mvnw.cmd
@@ -27,3 +26,4 @@ mvnw
 /nbdist/
 /.nb-gradle/
 /mvnw
+multiTenant.iml
