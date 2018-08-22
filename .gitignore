@@ -26,3 +26,4 @@ mvnw
 /dist/
 /nbdist/
 /.nb-gradle/
+/mvnw
