@@ -8,27 +8,9 @@ import java.util.Map;
 
 @Mapper
 public interface BomMapper {
-    BomDO get(Long cateId);
 
     List<BomDO> list(Map<String, Object> map);
 
     int count(Map<String, Object> map);
 
-    int save(BomDO bom);
-
-    int update(BomDO bom);
-
-    int remove(Long cate_id);
-
-    int batchRemove(Long[] cateIds);
-
-    Long[] listParentBom();
-
-    int getBomInfoNumber(Long cateId);
-
-    List<BomDO> getComponentNameList();
-
-    BomDO getBomByCode(String cateCode);
-
-    List<BomDO> listParent();
 }

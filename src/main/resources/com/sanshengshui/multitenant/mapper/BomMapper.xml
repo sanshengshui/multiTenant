@@ -4,11 +4,11 @@
 <mapper namespace="com.sanshengshui.multitenant.mapper.BomMapper">
 
 	<select id="get" resultType="com.sanshengshui.multitenant.pojo.BomDO">
-		select `cate_id`,`parent_id`,`cate_code`,`name`,`unit`,`used_count`,`specify`,`property`,`status`,`description` from t_bom where cate_id = #{value}
+		select `cate_id`,`parent_id`,`cate_code`,`name`,`unit`,`used_count`,`specify`,`property`,`status`,`description` from bom where cate_id = #{value}
 	</select>
 	
 	<select id="list" resultType="com.sanshengshui.multitenant.pojo.BomDO">
-		select `cate_id`,`parent_id`,`cate_code`,`name`,`unit`,`used_count`,`specify`,`property`,`status`,`description` from t_bom
+		select `cate_id`,`parent_id`,`cate_code`,`name`,`unit`,`used_count`,`specify`,`property`,`status`,`description` from bom
         <where>  
 		  		  <if test="cateId != null and cateId != ''"> and cate_id = #{cateId} </if>
 		  		  <if test="parentId != null and parentId != ''"> and parent_id = #{parentId} </if>
@@ -35,7 +35,7 @@
 	</select>
 	<!-- 为了保证mycat分库的操作会进行，同一查询会重新执行而不是在sqlSession中查找，需要加上flushCache="true"-->
  	<select id="count" flushCache="true" resultType="int">
-		select count(*) from t_bom
+		select count(*) from bom
 		 <where>  
 		  		  <if test="cateId != null and cateId != ''"> and cate_id = #{cateId} </if>
 		  		  <if test="parentId != null and parentId != ''"> and parent_id = #{parentId} </if>
@@ -51,7 +51,7 @@
 	</select>
 	 
 	<insert id="save" parameterType="com.sanshengshui.multitenant.pojo.BomDO" useGeneratedKeys="true" keyProperty="cateId">
-		insert into t_bom
+		insert into bom
 		(
 			`parent_id`, 
 			`cate_code`, 
